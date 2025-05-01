@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    width: 80vw;
+    height: 50vh;
+    overflow: hidden;
+  }
+  
+  .box {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    transition: flex 0.4s ease-in-out;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease-in-out;
+    z-index: 1;
+  }
+  
+  .box:hover::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .box a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .box a .content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    padding: 50px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .box a:hover .content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .content > h2 {
+    color: white;
+    padding-left: 20px;
+    font-size: 3em;
+  }
+  
+  .expanding-description {
+    color: white;
+    padding-left: 20px;
+  }
+  

@@ -1,0 +1,166 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: transparent;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header.scrolled {
+  transform: scale(0.90);
+}
+
+/* Logo */
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'MyCustomFont', sans-serif;
+  border: none;
+}
+
+/* DESKTOP NAV */
+.nav-desktop {
+  display: flex;
+}
+
+.nav-desktop ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-desktop a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-desktop a:hover {
+  color: var(--smalt-blue);
+}
+
+/* HAMBURGER ICON */
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: var(--text);
+  left: 0;
+  transform-origin: center;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 6px;
+}
+.menu-toggle span:nth-child(2) {
+  top: 14px;
+}
+.menu-toggle span:nth-child(3) {
+  top: 22px;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 14px;
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 14px;
+}
+
+/* MOBILE NAV */
+.nav-mobile {
+  display: none;
+}
+
+@media (max-width: 1250px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-mobile {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-dark);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .nav-mobile.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-mobile ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-mobile ul li {
+    margin: 1.5rem 0;
+  }
+
+  .nav-mobile ul li a {
+    font-size: 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .nav-mobile ul li a:hover {
+    color: var(--smalt-blue);
+  }
+}

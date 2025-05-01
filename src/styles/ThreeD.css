@@ -1,0 +1,129 @@
+/* Container */
+#vfx-main {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+  }
+  
+  /* General Headings */
+  section h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  
+  /* Images Grid */
+  .tred-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .image-wrapper img:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Sketchfab Section */
+  .sketchfab {
+    text-align: center;
+    margin: 4rem 0;
+  }
+  
+  .sketchfab a {
+    color: #264a84;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive Video */
+  .responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 2.5rem 0;
+  }
+  
+  .responsive-video iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    top: 0;
+    left: 0;
+  }
+  
+  /* VR Game Section */
+  .vr-game {
+    margin-top: 5rem;
+  }
+  
+  .vr-game p {
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .vr-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+  
+  .vr-info > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .vr-info img {
+    width: 100%;
+    max-width: 340px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .vr-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* VFX Section */
+  .vfx {
+    margin-top: 5rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    #vfx-main {
+      padding: 2rem 1rem;
+    }
+  
+    section h2 {
+      font-size: 1.75rem;
+    }
+  
+    .vr-info > div {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .vr-info img {
+      max-width: 100%;
+    }
+  }
+  

@@ -1,0 +1,24 @@
+:root {
+  --background-dark: #f3f7f6;
+  --smalt-blue: #264a84;
+  --text: black;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('./assets/fonts/VIRUST.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background-color: var(--background-dark);
+}
+
+h1, h2, h3 {
+  font-family: 'MyCustomFont', Arial, sans-serif;
+}
+
