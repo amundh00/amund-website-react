@@ -1,6 +1,6 @@
 // App.jsx
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Work from "./pages/Work";
+import Coding from "./pages/Coding";
 import { initSmoothScroll } from "./animations/smoothScroll";
 import ThreeD from "./pages/ThreeD";
 import Film from "./pages/Film";
@@ -17,9 +18,16 @@ import Products from "./pages/Products";
 import Weddings from "./pages/Wedding";
 
 function App() {
+  const { pathname } = useLocation();
+
   useEffect(() => {
     initSmoothScroll();
   }, []);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
@@ -29,6 +37,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/portfolio/coding" element={<Coding />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/portfolio/threeD" element={<ThreeD />} />
         <Route path="/portfolio/video" element={<Film />} />

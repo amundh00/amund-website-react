@@ -49,7 +49,7 @@
 
 .portrait-item {
   position: relative;
-  width: calc(33.333% - 1rem);
+  width: calc(25% - 1.125rem);
   aspect-ratio: 3/4;
   overflow: hidden;
   border-radius: 15px;
@@ -97,7 +97,7 @@
   font-weight: 500;
   letter-spacing: 0.5px;
 }
-
+ 
 .loading {
   text-align: center;
   padding: 4rem;

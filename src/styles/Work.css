@@ -4,6 +4,7 @@ main {
   
   /* Timeline Section */
   .timeline {
+    margin-left: 10% !important;
     position: relative;
     width: 100%;
     margin: 50px auto;

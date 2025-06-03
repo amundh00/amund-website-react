@@ -19,12 +19,7 @@ function About() {
   return (
     <main>
       <section id="about-softwares">
-        <h2>Software and Technologies</h2>
-        <div id="softwares">
-          {skills.map((item) => (
-            <img key={item.id} src={item.imageUrl} alt={item.name} title={item.name} />
-          ))}
-        </div>
+        <h2>Coming soon!</h2>
       </section>
     </main>
   );
