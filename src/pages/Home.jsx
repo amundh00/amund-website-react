@@ -6,9 +6,7 @@ import { animateScrollSections } from "../animations/scrollAnimations";
 import { setupGalleryHover } from "../animations/galleryHover";
 import { initSmoothScroll } from "../animations/smoothScroll";
 import { Link } from "react-router-dom";
-
-
-
+import MyGalleries from "../components/MyGalleries";
 
 function Home() {
   const heroRef = useRef(null);
@@ -34,92 +32,15 @@ function Home() {
           <div>
             <h2 id="heroH2">Portfolio</h2>
             <h1>Halgunset</h1>
-            <p>Web developer, System developer</p>
+            <p>Web developer</p>
           </div>
         </div>
       </section>
 
       <section className="spacer"></section>
 
-      {/* Mobile Gallery */}
-      <div className="gallery-container">
-        <h2>My Galleries</h2>
-        <section className="gallery">
-          <div className="gallery-item">
-            <a href="#">
-              <img src="/images/coding/fotspor.webp" alt="Coding" />
-              <div className="overlay"><h2>Development</h2></div>
-            </a>
-          </div>
-          <div className="gallery-item">
-            <a href="#">
-              <img src="/images/photo/photo.webp" alt="Photo" />
-              <div className="overlay"><h2>Photo</h2></div>
-            </a>
-          </div>
-          <div className="gallery-item">
-          <Link to="/portfolio/threeD">
-            <img src="/images/threeD/kitchen.webp" alt="3D" />
-            <div className="overlay"><h2>3D</h2></div>
-          </Link>
-          </div>
-          <div className="gallery-item">
-            <a href="#">
-              <img src="/images/video/farmorlillebror.png" alt="Video" />
-              <div className="overlay"><h2>Video</h2></div>
-            </a>
-          </div>
-        </section>
-      </div>
-
-      {/* Desktop Expanding Gallery */}
-      <h2 id="gallery-expanding-title">My Galleries</h2>
-      <div className="container">
-        <div
-          className="box"
-          style={{ backgroundImage: "url('/images/coding/fotspor.webp')" }}
-        >
-          <a href="/portfolio/coding">
-            <div className="content">
-              <h2>Development</h2>
-              <p className="expanding-description">See my development projects</p>
-            </div>
-          </a>
-        </div>
-        <div
-          className="box"
-          style={{ backgroundImage: "url('/images/photo/photo.webp')" }}
-        >
-          <a href="/portfolio/photo">
-            <div className="content">
-              <h2>Photo</h2>
-              <p className="expanding-description">My photo gallery</p>
-            </div>
-          </a>
-        </div>
-        <div
-          className="box"
-          style={{ backgroundImage: "url('/images/threeD/kitchen.webp')" }}
-        >
-          <Link to="/portfolio/threeD">
-            <div className="content">
-              <h2>3D</h2>
-              <p className="expanding-description">3D renders and art</p>
-            </div>
-          </Link>
-        </div>
-        <div
-          className="box"
-          style={{ backgroundImage: "url('/images/video/farmorlillebror.png')" }}
-        >
-          <a href="/portfolio/video">
-            <div className="content">
-              <h2>Video</h2>
-              <p className="expanding-description">My video gallery</p>
-            </div>
-          </a>
-        </div>
-      </div>
+      {/* My Galleries Component */}
+      <MyGalleries />
 
       <section className="spacer"></section>
 

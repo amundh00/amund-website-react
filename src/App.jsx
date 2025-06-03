@@ -10,6 +10,11 @@ import Portfolio from "./pages/Portfolio";
 import Work from "./pages/Work";
 import { initSmoothScroll } from "./animations/smoothScroll";
 import ThreeD from "./pages/ThreeD";
+import Film from "./pages/Film";
+import Photo from "./pages/Foto";
+import Portraits from "./pages/Portraits";
+import Products from "./pages/Products";
+import Weddings from "./pages/Wedding";
 
 function App() {
   useEffect(() => {
@@ -26,6 +31,11 @@ function App() {
         <Route path="/work" element={<Work />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/portfolio/threeD" element={<ThreeD />} />
+        <Route path="/portfolio/video" element={<Film />} />
+        <Route path="/portfolio/photo" element={<Photo />} />
+        <Route path="/portfolio/portraits" element={<Portraits />} />
+        <Route path="/portfolio/products" element={<Products />} />
+        <Route path="/portfolio/weddings" element={<Weddings />} />
       </Routes>
       <Footer />
     </>
