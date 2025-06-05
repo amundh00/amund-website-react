@@ -98,12 +98,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 5vw;
+    padding: 1vw;
     text-align: center;
   }
   
   #section3 > div {
-    max-width: 60%;
+    max-width: 90%;
   }
   
   #section3 > div > h2 {
