@@ -1,37 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import Lightbox from '../components/Lightbox';
 import '../styles/products.css';
+import { fetchImagesByCategory, getCachedImages } from '../api/fetchImages';
 
 function Products() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Function to import all images from products folder
-    const importImages = () => {
-      const lowQualityModules = require.context(
-        '../../public/assets/images/products/lowQuality', 
-        false, 
-        /\.(png|jpe?g|webp)$/i
-      );
+    const loadImages = async () => {
+      console.log('Loading products images from Firebase...');
       
-      const imageList = lowQualityModules.keys().map((item, index) => {
-        const filename = item.replace('./', '');
-        return {
-          src: `/assets/images/products/lowQuality/${filename}`,
-          highQualitySrc: `/assets/images/products/highQuality/${filename}`,
-          name: filename.replace(/\.(png|jpe?g|webp)$/i, ''),
-          id: index
-        };
-      });
+      // Clear cache to force fresh fetch and see what's happening
+      localStorage.removeItem('cachedImages');
       
-      setImages(imageList);
+      try {
+        const productImages = await fetchImagesByCategory('others');
+        console.log('Fetched product images:', productImages);
+        
+        // Log each image to see if thumbnails are being used
+        productImages.forEach((img, index) => {
+          console.log(`Image ${index + 1}:`, {
+            name: img.name,
+            fullUrl: img.fullUrl,
+            thumbnailUrl: img.thumbnailUrl,
+            usingThumbnail: img.fullUrl !== img.thumbnailUrl
+          });
+        });
+        
+        setImages(productImages);
+      } catch (error) {
+        console.error('Error loading products images:', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    importImages();
+    loadImages();
   }, []);
 
   const openLightbox = (image) => {
+    console.log('Opening lightbox with:', {
+      thumbnail: image.thumbnailUrl,
+      fullImage: image.fullUrl,
+      willUseInLightbox: image.fullUrl // This becomes highQualitySrc
+    });
     setSelectedImage(image);
   };
 
@@ -51,6 +65,20 @@ function Products() {
     setSelectedImage(images[prevIndex]);
   };
 
+  if (loading) {
+    return (
+      <main className="products-main">
+        <div className="products-header">
+          <h1>Product Photography</h1>
+          <p>Showcasing products with professional lighting and composition</p>
+        </div>
+        <div className="loading">
+          <p>Loading Images...</p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="products-main">
       <div className="products-header">
@@ -65,23 +93,36 @@ function Products() {
             className="product-item"
             onClick={() => openLightbox(image)}
           >
-            <img src={image.src} alt={image.name} loading="lazy" />
+            {/* Add debugging info */}
+            <img 
+              src={image.thumbnailUrl} 
+              alt={image.name} 
+              loading="lazy"
+              onLoad={() => console.log(`Loaded thumbnail: ${image.name}`)}
+              onError={() => console.log(`Failed to load thumbnail: ${image.name}`)}
+            />
             <div className="product-overlay">
-              <span>{image.name}</span>
+              <span>{image.name.replace(/\.[^/.]+$/, "")}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {images.length === 0 && (
+      {images.length === 0 && !loading && (
         <div className="loading">
-          <p>Loading products...</p>
+          <p>No products found. Upload some images to the 'others' folder in Firebase Storage.</p>
         </div>
       )}
 
       <Lightbox
-        selectedImage={selectedImage}
-        images={images}
+        selectedImage={selectedImage ? {
+          ...selectedImage,
+          highQualitySrc: selectedImage.fullUrl
+        } : null}
+        images={images.map(img => ({
+          ...img,
+          highQualitySrc: img.fullUrl
+        }))}
         onClose={closeLightbox}
         onNext={nextImage}
         onPrev={prevImage}

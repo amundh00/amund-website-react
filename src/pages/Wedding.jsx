@@ -1,37 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import Lightbox from '../components/Lightbox';
 import '../styles/wedding.css';
+import { fetchImagesByCategory, getCachedImages } from '../api/fetchImages';
 
 function Weddings() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Function to import all images from bryllup folder
-    const importImages = () => {
-      const lowQualityModules = require.context(
-        '../../public/assets/images/bryllup/lowQuality', 
-        false, 
-        /\.(png|jpe?g|webp)$/i
-      );
+    const loadImages = async () => {
+      console.log('Loading wedding images from Firebase...');
       
-      const imageList = lowQualityModules.keys().map((item, index) => {
-        const filename = item.replace('./', '');
-        return {
-          src: `/assets/images/bryllup/lowQuality/${filename}`,
-          highQualitySrc: `/assets/images/bryllup/highQuality/${filename}`,
-          name: filename.replace(/\.(png|jpe?g|webp)$/i, ''),
-          id: index
-        };
-      });
+      // Check cache first
+      const cached = getCachedImages();
+      if (cached && cached.weddings && cached.weddings.length > 0) {
+        console.log('Using cached wedding images:', cached.weddings);
+        setImages(cached.weddings);
+        setLoading(false);
+        return;
+      }
       
-      setImages(imageList);
+      // Fetch fresh images from Firebase Storage using 'weddings' folder
+      try {
+        const weddingImages = await fetchImagesByCategory('weddings');
+        console.log('Fetched wedding images:', weddingImages);
+        
+        // Log each image to see if thumbnails are being used
+        weddingImages.forEach((img, index) => {
+          console.log(`Wedding ${index + 1}:`, {
+            name: img.name,
+            fullUrl: img.fullUrl,
+            thumbnailUrl: img.thumbnailUrl,
+            usingThumbnail: img.fullUrl !== img.thumbnailUrl
+          });
+        });
+        
+        setImages(weddingImages);
+      } catch (error) {
+        console.error('Error loading wedding images:', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    importImages();
+    loadImages();
   }, []);
 
   const openLightbox = (image) => {
+    console.log('Opening lightbox with:', {
+      thumbnail: image.thumbnailUrl,
+      fullImage: image.fullUrl
+    });
     setSelectedImage(image);
   };
 
@@ -51,6 +71,20 @@ function Weddings() {
     setSelectedImage(images[prevIndex]);
   };
 
+  if (loading) {
+    return (
+      <main className="weddings-main">
+        <div className="weddings-header">
+          <h1>Wedding Photography</h1>
+          <p>Capturing love stories and unforgettable moments on your special day</p>
+        </div>
+        <div className="loading">
+          <p>Loading wedding photos...</p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="weddings-main">
       <div className="weddings-header">
@@ -65,23 +99,35 @@ function Weddings() {
             className="wedding-item"
             onClick={() => openLightbox(image)}
           >
-            <img src={image.src} alt={image.name} loading="lazy" />
+            <img 
+              src={image.thumbnailUrl} 
+              alt={image.name} 
+              loading="lazy"
+              onLoad={() => console.log(`Loaded wedding thumbnail: ${image.name}`)}
+              onError={() => console.log(`Failed to load wedding thumbnail: ${image.name}`)}
+            />
             <div className="wedding-overlay">
-              <span>{image.name}</span>
+              <span>{image.name.replace(/\.[^/.]+$/, "")}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {images.length === 0 && (
+      {images.length === 0 && !loading && (
         <div className="loading">
-          <p>Loading wedding photos...</p>
+          <p>No wedding photos found. Upload some images to the 'weddings' folder in Firebase Storage.</p>
         </div>
       )}
 
       <Lightbox
-        selectedImage={selectedImage}
-        images={images}
+        selectedImage={selectedImage ? {
+          ...selectedImage,
+          highQualitySrc: selectedImage.fullUrl
+        } : null}
+        images={images.map(img => ({
+          ...img,
+          highQualitySrc: img.fullUrl
+        }))}
         onClose={closeLightbox}
         onNext={nextImage}
         onPrev={prevImage}
