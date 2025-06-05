@@ -105,6 +105,13 @@
   font-size: 1.2rem;
 }
 
+/* Add to each gallery CSS file */
+.gallery-main-container {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
 /* Mobile Responsive */
 @media (max-width: 1200px) {
   .product-item {
@@ -143,5 +150,9 @@
 
   .products-header p {
     font-size: 1rem;
+  }
+
+  .main-container {
+    padding: 1rem 0.5rem;
   }
 }

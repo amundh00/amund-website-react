@@ -1,6 +1,8 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background-color: transparent;
   width: 100%;
@@ -14,6 +16,11 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Add padding to body to compensate for fixed header */
+body {
+  padding-top: 80px; /* Adjust based on your header height */
+}
+
 .header-inner {
   display: flex;
   justify-content: space-between;
@@ -22,6 +29,8 @@
   max-width: 1440px;
   margin: 0 auto;
   transition: transform 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header.scrolled .header-inner {
@@ -168,5 +177,26 @@
 
   .nav-mobile ul li a:hover {
     color: var(--smalt-blue);
+  }
+
+  .header-inner {
+    padding: 1rem 3%; /* Reduce from 5% to 3% */
+  }
+}
+
+/* Add intermediate breakpoint */
+@media (max-width: 900px) {
+  .header-inner {
+    padding: 1rem 2%; /* Further reduce padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 1rem 1%;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
   }
 }
