@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   padding: 20px;
-  padding-bottom: 500px;
+  padding-bottom: 50px;
 }
 
 .gallery-container > h2 {
@@ -140,6 +140,7 @@
 @media (min-width: 769px) {
   .gallery-container {
     display: none;
+    padding-bottom: 0px;
   }
 
   .container {
@@ -149,6 +150,7 @@
   #gallery-expanding-title {
     display: block;
     font-size: 3em;
+    padding-bottom: 0px;
   }
 
   .gallery-item:hover .overlay {
