@@ -9,7 +9,7 @@ function Photo() {
       
       <div className="photo-categories">
         <Link to="/portfolio/portraits" className="category-item">
-          <img src="/assets/images/Portraits/highQuality/TuvaBlomsterEng (12 of 49).jpg" alt="Portrait Photography" />
+          <img src="/assets/images/portrait_thumbnail.jpg" alt="Portrait Photography" />
           <div className="category-overlay">
             <button className="view-gallery-btn">View Gallery</button>
           </div>
@@ -20,7 +20,7 @@ function Photo() {
         </Link>
 
         <Link to="/portfolio/weddings" className="category-item">
-          <img src="/assets/images/bryllup/highQuality/Bryllup (21 of 125).jpg" alt="Wedding Photography" />
+          <img src="/assets/images/wedding_thumbnail.jpg" alt="Wedding Photography" />
           <div className="category-overlay">
             <button className="view-gallery-btn">View Gallery</button>
           </div>
@@ -31,7 +31,7 @@ function Photo() {
         </Link>
 
         <Link to="/portfolio/products" className="category-item">
-          <img src="/assets/images/products/highQuality/G Wag (7 of 12).jpg" alt="Product Photography" />
+          <img src="/assets/images/others_thumbnail.jpg" alt="Product Photography" />
           <div className="category-overlay">
             <button className="view-gallery-btn">View Gallery</button>
           </div>
