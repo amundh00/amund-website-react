@@ -38,13 +38,71 @@ function Home() {
       </section>
 
       <section className="spacer"></section>
+      
+      {/* Latest Projects Section */}
+      <section className="section" id="section2">
+        <div className="home-projects-container">
+          <h2 className="home-projects-title">Latest Projects</h2>
+          <p className="home-projects-description">
+            Here are some of my latest projects.
+          </p>
+          <a href="https://github.com/amundh00" target="_blank">My Github</a>
 
-      {/* My Galleries Component */}
+          <div className="home-projects-grid">
+            <div className="home-project-card">
+              <div className="home-project-image">
+                <img src="../images/coding/ecomPage.webp" alt="E-commerce page" />
+              </div>
+              <div className="home-project-content">
+                <h3 className="home-project-title">E-commerce page</h3>
+                <p className="home-project-description">
+                  An E-commerce page I made with the Noroff API.
+                </p>
+                <Link to="/projects/ecommerce" className="home-project-link">
+                  <button className="home-project-btn">Read more</button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="home-project-card">
+              <div className="home-project-image">
+                <img src="../images/coding/holidaze.webp" alt="Holidaze" />
+              </div>
+              <div className="home-project-content">
+                <h3 className="home-project-title">Holidaze</h3>
+                <p className="home-project-description">
+                  Venue booking page, user can sign in, sign up. Add venues or book venues.
+                </p>
+                <Link to="/projects/holidaze" className="home-project-link">
+                  <button className="home-project-btn">Read more</button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="home-project-card">
+              <div className="home-project-image">
+                <img src="../images/coding/tilslaget.webp" alt="Tilslaget" />
+              </div>
+              <div className="home-project-content">
+                <h3 className="home-project-title">Tilslaget</h3>
+                <p className="home-project-description">
+                  An auction page. User can register, sign in and bid on auctions.
+                </p>
+                <Link to="/projects/tilslaget" className="home-project-link">
+                  <button className="home-project-btn">Read more</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="spacer"></section>
+
       <MyGalleries />
 
       <section className="spacer"></section>
 
-      {/* Nordcode Section */}
       <section className="section" id="section3">
         <div>
           <h2 id="nordcode-title">Nordcode</h2>
@@ -73,7 +131,7 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/nordcode/logo_olavsolberg.png"
+                  src="../images/nordcode/logo_olavsolberg.png"
                   alt="Olav Solberg"
                 />
               </a>
@@ -85,7 +143,7 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/nordcode/Fotspor-LOGO-YELLOW.png"
+                  src="../images/nordcode/Fotspor-LOGO-YELLOW.png"
                   alt="Fotspor Film"
                 />
               </a>
@@ -97,7 +155,7 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/nordcode/logo-farger_png-1Raevdilter_logo.png"
+                  src="../images/nordcode/logo-farger_png-1Raevdilter_logo.png"
                   alt="Raevedilter"
                 />
               </a>
@@ -109,7 +167,7 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/nordcode/Fjell-og-gravelag-transparent.png"
+                  src="../images/nordcode/Fjell-og-gravelag-transparent.png"
                   alt="Fjell og Gravelag"
                 />
               </a>

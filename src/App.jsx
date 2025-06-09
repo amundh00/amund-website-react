@@ -15,7 +15,10 @@ import Film from "./pages/Film";
 import Photo from "./pages/Foto";
 import Portraits from "./pages/Portraits";
 import Products from "./pages/Products";
-import Weddings from "./pages/Wedding";
+import Weddings from "./pages/Wedding";// Add project imports
+import Tilslaget from "./pages/projects/tilslaget";
+import Holidaze from "./pages/projects/holidaze";
+import Ecommerce from "./pages/projects/ecom";
 
 function App() {
   const { pathname } = useLocation();
@@ -45,6 +48,11 @@ function App() {
         <Route path="/portfolio/portraits" element={<Portraits />} />
         <Route path="/portfolio/products" element={<Products />} />
         <Route path="/portfolio/weddings" element={<Weddings />} />
+        
+        {/* Project routes */}
+        <Route path="/projects/tilslaget" element={<Tilslaget />} />
+        <Route path="/projects/holidaze" element={<Holidaze />} />
+        <Route path="/projects/ecommerce" element={<Ecommerce />} />
       </Routes>
       <Footer />
     </>
